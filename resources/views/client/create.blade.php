@@ -1,4 +1,4 @@
-{!! Form::open(['route' => 'client.store'])!!}
+{!! Form::open(['route' => 'app.clients.create'])!!}
 
 <div>
     <h2>Create client form:</h2>

@@ -8,8 +8,10 @@ Clients:
     <div>Client sum {{$client['sum']}}</div>
     <div>Comment {{$client['comment'] }}</div>
 	
-	
-{!! Form::open(['route' => ['client.destroy', $client->id], 'method' => 'DELETE']) !!}
+<a href="{{ $client['id']}}/edit">
+<button type="button" class="btn btn-primary">Edit</button></a>
+
+{!! Form::open(['route' => ['app.clients.destroy', $client->id], 'method' => 'DELETE']) !!}
 {!! Form::submit('Delete')!!}
 {!! Form::close() !!}
  

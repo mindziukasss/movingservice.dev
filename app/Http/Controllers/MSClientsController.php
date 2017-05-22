@@ -76,10 +76,10 @@ class MSClientsController extends Controller {
 	 * @return Response
 	 */
 	public function edit($id)
-	{
-		$config['client'] = MSClients::find($id);
-		
-		$config['route'] = route('client.edit',$id);
+	{	
+		$config['route'] = route('app.clients.edit',$id);
+		$config['client'] = MSClients::find($id)->toArray();
+
 		
 		return view('client.edit', $config);
 		
@@ -97,6 +97,7 @@ class MSClientsController extends Controller {
 		$config = MSClients::find($id);
 		$data = request()->all();
 		
+		
 		$config->update([
 		'name' => $data['name'],
 		'phone_number' => $data['phone_number'],
@@ -107,7 +108,7 @@ class MSClientsController extends Controller {
 		]);
 		
 		
-		return redirect()->route('clients');
+		return redirect()->route('app.clients.index');
 	
 	}
 

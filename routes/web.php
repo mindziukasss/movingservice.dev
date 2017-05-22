@@ -17,16 +17,16 @@ Route::get('/', function () {
 
 Route::group(['prefix' => 'client'], function (){
 
-    Route::get('/',['uses' => 'MSClientsController@index']);
-    Route::get('/create', ['as' => 'app.client.store', 'uses' => 'MSClientsController@create']);
+    Route::get('/',['as' => 'app.clients.index', 'uses' => 'MSClientsController@index']);
+    Route::get('/create', ['as' => 'app.clients.create', 'uses' => 'MSClientsController@create']);
     Route::post('/create', [ 'uses' => 'MSClientsController@store']);
 
     Route::group(['prefix' => '{id}'], function () {
 
 		Route::get('/',['uses' => 'MSClientsController@show']);
-		Route::get('/edit', ['as' => 'app.client.edit', 'uses' => 'MSClientsController@edit']);
+		Route::get('/edit', ['as' => 'app.clients.edit', 'uses' => 'MSClientsController@edit']);
 		Route::post('/edit', [  'uses' => 'MSClientsController@update']);
-		Route::delete('/delete', ['as' => 'app.client.destroy', 'uses' => 'MSClientsController@destroy']);
+		Route::delete('/delete', ['as' => 'app.clients.destroy', 'uses' => 'MSClientsController@destroy']);
 
     });
 
