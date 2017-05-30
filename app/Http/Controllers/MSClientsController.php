@@ -13,7 +13,8 @@ class MSClientsController extends Controller {
 	 */
 	public function index()
 
-	{	$dataFromModel = new MSClients;
+	{	
+		$dataFromModel = new MSClients();
 		$config = $this->listBladeData();
 		$config['tableName'] = $dataFromModel->getTableName();
 		$config['list'] = MSClients::get()->toArray();
@@ -28,10 +29,13 @@ class MSClientsController extends Controller {
 	 * @return Response
 	 */
 	public function create()
-	{
-        $config['clients'] = MSClients::all();
-
-        return view('client.create', $config);
+	{	
+		$dataFromModel = new MSClients();
+        $config['item'] = $dataFromModel->getFillable();
+        $config['route'] = 'app.clients.create';
+        return view('partials.createAll', $config);
+        // dd($config);
+        // return view('client.create', $config);
 	}
 
 	/**
