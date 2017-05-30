@@ -12,10 +12,13 @@ class MSClientsController extends Controller {
 	 * @return Response
 	 */
 	public function index()
-	{
-		$config['clients'] = MSClients::all();
 
-		return view('client.index', $config);
+	{	$dataFromModel = new MSClients;
+		$config = $this->listBladeData();
+		$config['tableName'] = $dataFromModel->getTableName();
+		$config['list'] = MSClients::get()->toArray();
+
+		return view('partials.listIndex', $config);
 	}
 
 	/**
@@ -124,5 +127,14 @@ class MSClientsController extends Controller {
 		MSClients::destroy($id);
 		return redirect()->route('clients');
 	}
+
+	private function listBladeData() {
+        $config = [];
+        $config['show'] = 'app.clients.show';
+        $config['create'] = 'app.clients.create';
+        $config['delete'] = 'app.clients.destroy';
+        $config['edit'] = 'app.clients.edit';
+        return $config;
+    }
 
 }
