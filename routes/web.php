@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::group(['prefix' => 'client'], function (){
+Route::group(['prefix' => 'clients'], function (){
 
     Route::get('/',['as' => 'app.clients.index', 'uses' => 'MSClientsController@index']);
     Route::get('/create', ['as' => 'app.clients.create', 'uses' => 'MSClientsController@create']);

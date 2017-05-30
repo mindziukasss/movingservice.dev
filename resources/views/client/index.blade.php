@@ -1,3 +1,7 @@
+@extends('base')
+
+@section('content')
+
 Clients:
 
 @foreach($clients as $client)
@@ -9,3 +13,5 @@ Clients:
     <div>Comment {{$client['comment'] }}</div>
     ////////////////
     @endforeach
+
+@endsection
