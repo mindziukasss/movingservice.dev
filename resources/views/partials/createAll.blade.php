@@ -18,9 +18,9 @@
                       
                                     	Iligal{{Form::checkbox('type', 'I')}}
     									Legal{{Form::checkbox('type', 'L')}}
-
-    								@endif
-                                    {{ Form::text($value) }}
+                                    @else
+                                        {{ Form::text($value) }}
+                                    @endif
                                 </td>
                             </tr>
                         @endif

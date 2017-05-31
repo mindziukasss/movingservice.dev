@@ -58,7 +58,7 @@ class MSClientsController extends Controller {
 		'comment' => $data['comment']
 		));
 		
-		return view('client.create', $config);
+		return redirect()->route('app.clients.index');
 		
 	}
 
