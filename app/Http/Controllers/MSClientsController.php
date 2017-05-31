@@ -32,7 +32,7 @@ class MSClientsController extends Controller {
 	public function create()
 	{	
 		$dataFromModel = new MSClients();
-        $config['list'] = $dataFromModel->getFillable();
+        $config['item'] = $dataFromModel->getFillable();
         $config['ignore'] = ['created_at', 'updated_at', 'deleted_at', 'id', 'count'];
         $config['route'] = 'app.clients.create';
         return view('partials.createAll', $config);
@@ -85,11 +85,12 @@ class MSClientsController extends Controller {
 	 */
 	public function edit($id)
 	{	
+		$config['id'] = $id;
 		$config['route'] = route('app.clients.edit',$id);
-		$config['client'] = MSClients::find($id)->toArray();
+		$config['ignore'] = ['created_at', 'updated_at', 'deleted_at', 'id', 'count',] ;
+		$config['item'] = MSClients::find($id)->toArray();
 
-		
-		return view('client.edit', $config);
+		return view('partials.edit', $config);
 		
 	}
 

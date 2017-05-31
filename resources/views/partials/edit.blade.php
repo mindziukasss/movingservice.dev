@@ -4,22 +4,24 @@
         <div class="row">
             <div class="col-md-12">
 
-                {!! Form::model(['url' => route($route)]) !!}
+                {!! Form::model(['url' => route('app.clients.edit',$id)]) !!}
 
                 <table class="table table-bordered">
 
                     @foreach($item as $key => $value)
                         @if(!in_array($key, $ignore))
                             <tr>
-                                <td>{{$value}}</td>
+                                <td>{{$key}}</td>
                                 <td>
                                     {{ Form::label('', null, ['class' => 'control-label']) }}
-                                    @if($value == 'type')
-                      
-                                    	Iligal{{Form::checkbox('type', 'I')}}
-    									Legal{{Form::checkbox('type', 'L')}}
+                                    @if($value == 'I')
+                                        Iligal{{Form::checkbox('type', 'I', true) }}
+                                        Legal{{Form::checkbox('type', 'L' ) }}
+                                     @elseif($value == 'L')
+                                        Iligal{{Form::checkbox('type', 'I') }}
+                                        Legal{{Form::checkbox('type', 'L', true ) }}
                                     @else
-                                        {{ Form::text($value) }}
+                                        {{ Form::text($key, $value) }}
                                     @endif
                                 </td>
                             </tr>
