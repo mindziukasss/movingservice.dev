@@ -8,8 +8,8 @@
 
                 <table class="table table-bordered">
 
-                    @foreach($item as $key => $value)
-                        @if($value != 'created_at' && $value != 'updated_at' && $value != 'deleted_at' && $value != 'id' && $value != 'count' )
+                    @foreach($list as $key => $value)
+                        @if(!in_array($key, $ignore))
                             <tr>
                                 <td>{{$value}}</td>
                                 <td>

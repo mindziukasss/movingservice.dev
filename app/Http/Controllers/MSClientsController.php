@@ -18,6 +18,7 @@ class MSClientsController extends Controller {
 		$config = $this->listBladeData();
 		$config['tableName'] = $dataFromModel->getTableName();
 		$config['list'] = MSClients::get()->toArray();
+		$config['ignore'] = ['created_at', 'updated_at', 'deleted_at', 'id', 'count'];
 
 		return view('partials.listIndex', $config);
 	}
@@ -31,11 +32,10 @@ class MSClientsController extends Controller {
 	public function create()
 	{	
 		$dataFromModel = new MSClients();
-        $config['item'] = $dataFromModel->getFillable();
+        $config['list'] = $dataFromModel->getFillable();
+        $config['ignore'] = ['created_at', 'updated_at', 'deleted_at', 'id', 'count'];
         $config['route'] = 'app.clients.create';
         return view('partials.createAll', $config);
-        // dd($config);
-        // return view('client.create', $config);
 	}
 
 	/**
@@ -71,8 +71,9 @@ class MSClientsController extends Controller {
 	 */
 	public function show($id)
 	{
-		$config['client'] = MSClients::find($id);
-		return view('client.show', $config);
+		$config['item'] = MSClients::find($id)->toArray();
+		$config['ignore'] = ['created_at', 'updated_at', 'deleted_at', 'id', 'count'] ;
+		return view('partials.show', $config);
 	}
 
 	/**

@@ -9,29 +9,32 @@
             <thead>
             <tr>
                 @foreach($list[0] as $key => $value)
-                    <th>{{$key}}</th>
+                    @if(!in_array($key, $ignore))
+                        <th>{{$key}}</th>
+                    @endif
                 @endforeach
                 <th>edit</th>
                 <th>show</th>
                 <th>delete</th>
-
             </tr>
             </thead>
             <tbody>
             @foreach($list as $key => $record)
-            
                 <tr id="{{$record['id']}}">
                     @foreach($record as $key => $value)
-                        <td>
-                            {{$value}}
-                        </td>
+                        @if(!in_array($key, $ignore))
+                            <td>
+                                {{$value}}
+                            </td>
+                        @endif
                     @endforeach
-
-                    <td><a href="{{ route($edit,$record['id']) }}">
+                    <td>
+                        <a href="{{ route($edit,$record['id']) }}">
                             <button type="button" class="btn btn-primary">Edit</button>
                         </a>
                     </td>
-                    <td><a href="{{ route($show, $record['id']) }}">
+                    <td>
+                        <a href="{{ route($show, $record['id']) }}">
                             <button type="button" class="btn btn-success">Show</button>
                         </a>
                     </td>
