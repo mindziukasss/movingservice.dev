@@ -130,8 +130,9 @@ class MSClientsController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		MSClients::destroy($id);
-		return redirect()->route('clients');
+		if (MSClients::destroy($id)) {
+            return json_encode(["success" => true, "id" => $id]);
+        }
 	}
 
 	private function listBladeData() {
