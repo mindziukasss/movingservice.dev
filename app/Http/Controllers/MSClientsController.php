@@ -20,6 +20,11 @@ class MSClientsController extends Controller {
 		$config['list'] = MSClients::get()->toArray();
 		$config['ignore'] = ['created_at', 'updated_at', 'deleted_at', 'id', 'count'];
 
+		if($config['list'] == null )
+	        {
+	        	return redirect()->route('app.clients.create');
+	        }
+
 		return view('partials.listIndex', $config);
 	}
 
@@ -35,6 +40,8 @@ class MSClientsController extends Controller {
         $config['item'] = $dataFromModel->getFillable();
         $config['ignore'] = ['created_at', 'updated_at', 'deleted_at', 'id', 'count'];
         $config['route'] = 'app.clients.create';
+
+
         return view('partials.createAll', $config);
 	}
 
